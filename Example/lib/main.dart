@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:tpstreams_player_sdk/tpstreams_player_sdk.dart';
 
 void main() {
+  TPStreamsSDK.initialize(orgCode: "6eafqn");
+
   runApp(const MyApp());
 }
 
