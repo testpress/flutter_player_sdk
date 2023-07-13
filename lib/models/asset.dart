@@ -1,23 +1,41 @@
-import 'dart:ffi';
 import 'dart:io';
+
+import '../tpstreams_player_sdk.dart';
 
 class Asset {
   final String id;
   final String title;
   final Video video;
+  final String accessToken;
 
-  Asset({
-    required this.id,
-    required this.title,
-    required this.video,
-  });
+  Asset(
+      {required this.id,
+      required this.title,
+      required this.video,
+      required this.accessToken});
 
-  factory Asset.fromJSON(Map<String, dynamic> json) {
+  factory Asset.fromJSON(Map<String, dynamic> json, String accessToken) {
     return Asset(
-      id: json['id'],
-      title: json['title'],
-      video: Video.fromJSON(json['video']),
-    );
+        id: json['id'],
+        title: json['title'],
+        video: Video.fromJSON(json['video']),
+        accessToken: accessToken);
+  }
+
+  String get licenseURL {
+    var url =
+        'https://app.tpstreams.com/api/v1/${TPStreamsSDK.orgCode}/assets/$id/drm_license/?access_token=$accessToken';
+    if (Platform.isIOS) {
+      url += '&drm_type=fairplay';
+    }
+    return url;
+  }
+
+  String? get certificateURL {
+    if (Platform.isIOS) {
+      return 'https://app.tpstreams.com/static/fairplay.cer';
+    }
+    return null;
   }
 }
 
@@ -41,7 +59,7 @@ class Video {
         drmEnabled: json["enable_drm"]);
   }
 
-  String getPlaybackURL(){
+  String getPlaybackURL() {
     return drmEnabled && Platform.isAndroid ? dashURL : playbackURL;
   }
 }

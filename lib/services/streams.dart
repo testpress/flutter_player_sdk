@@ -9,7 +9,7 @@ Future<Asset> fetchAsset(String assetId, String accessToken) async {
   final response = await http.get(Uri.parse(url));
 
   if (response.statusCode == 200) {
-    return Asset.fromJSON(jsonDecode(response.body));
+    return Asset.fromJSON(jsonDecode(response.body), accessToken);
   } else {
     throw Exception('Failed to fetch data from API.');
   }
