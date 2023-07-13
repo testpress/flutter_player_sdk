@@ -3,6 +3,7 @@ import 'package:better_player/better_player.dart';
 import 'package:tpstreams_player_sdk/services/streams.dart';
 import 'package:tpstreams_player_sdk/tpstreams_player_sdk.dart';
 
+import '../domain/asset.dart';
 import '../models/asset.dart';
 
 class TPStreamPlayer extends StatefulWidget {
@@ -40,7 +41,7 @@ class _TPStreamPlayerState extends State<TPStreamPlayer> {
         future: _assetFuture,
         builder: (context, snapshot) {
           if (snapshot.hasData) {
-            _controller = getPlayerController(snapshot.data as Asset);
+            _controller = getPlayerControllerForAsset(snapshot.data as Asset);
             return AspectRatio(
               aspectRatio: 16 / 9,
               child: BetterPlayer(controller: _controller),
@@ -48,26 +49,9 @@ class _TPStreamPlayerState extends State<TPStreamPlayer> {
           } else if (snapshot.hasError) {
             return Text(snapshot.error.toString());
           } else {
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
+            return const Text("Loading");
           }
         });
-  }
-
-  BetterPlayerController getPlayerController(Asset asset) {
-    return BetterPlayerController(
-      const BetterPlayerConfiguration(
-        autoPlay: true,
-        aspectRatio: 16 / 9,
-        controlsConfiguration: BetterPlayerControlsConfiguration(
-          enablePlayPause: true,
-          enableFullscreen: true,
-        ),
-      ),
-      betterPlayerDataSource: BetterPlayerDataSource(
-          BetterPlayerDataSourceType.network, asset.video.getPlaybackURL()),
-    );
   }
 
   void pauseVideo() {
