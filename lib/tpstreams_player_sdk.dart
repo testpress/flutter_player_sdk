@@ -20,4 +20,6 @@ class TPStreamsSDK {
 
     return _orgCode!;
   }
+
+  static bool get isInitialized => _orgCode != null;
 }
