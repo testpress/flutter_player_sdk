@@ -5,21 +5,21 @@ import 'package:tpstreams_player_sdk/tpstreams_player_sdk.dart';
 
 import '../models/asset.dart';
 
-class TPPlayer extends StatefulWidget {
+class TPStreamPlayer extends StatefulWidget {
   final String assetId;
   final String accessToken;
 
-  const TPPlayer({
+  const TPStreamPlayer({
     Key? key,
     required this.assetId,
     required this.accessToken,
   }) : super(key: key);
 
   @override
-  State<TPPlayer> createState() => _TPPlayerState();
+  State<TPStreamPlayer> createState() => _TPStreamPlayerState();
 }
 
-class _TPPlayerState extends State<TPPlayer> {
+class _TPStreamPlayerState extends State<TPStreamPlayer> {
   late BetterPlayerController _controller;
   late Future<Asset> _assetFuture;
 
@@ -46,9 +46,8 @@ class _TPPlayerState extends State<TPPlayer> {
               child: BetterPlayer(controller: _controller),
             );
           } else if (snapshot.hasError) {
-             return Text(snapshot.error.toString());
-          }
-          else {
+            return Text(snapshot.error.toString());
+          } else {
             return const Center(
               child: CircularProgressIndicator(),
             );
@@ -67,8 +66,7 @@ class _TPPlayerState extends State<TPPlayer> {
         ),
       ),
       betterPlayerDataSource: BetterPlayerDataSource(
-          BetterPlayerDataSourceType.network,
-          asset.video.getPlaybackURL()),
+          BetterPlayerDataSourceType.network, asset.video.getPlaybackURL()),
     );
   }
 

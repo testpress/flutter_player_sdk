@@ -32,7 +32,11 @@ class HomePage extends StatelessWidget {
         title: const Text("Streams Demo"),
       ),
       body: const Column(
-        children: [TPPlayer(assetId: 'AeDsCzqB5Td', accessToken: '553157af-6754-4061-a089-8f6e44c7476f')],
+        children: [
+          TPStreamPlayer(
+              assetId: 'AeDsCzqB5Td',
+              accessToken: '553157af-6754-4061-a089-8f6e44c7476f')
+        ],
       ),
     );
   }
