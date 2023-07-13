@@ -1,7 +1,8 @@
 name: tpstreams_player_sdk
-description: A new Flutter package project.
+description: TPStreams Player SDK makes it easy to play our DRM-protected and non-DRM content.
 version: 0.0.1
-homepage:
+homepage: https://tpstreams.com/
+documentation: https://developer.tpstreams.com/
 
 environment:
   sdk: '>=2.19.2 <3.0.0'
