@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:tpstreams_player_sdk/tpstreams_player_sdk.dart';
 
 void main() {
-  TPStreamsSDK.initialize(orgCode: "9mpasc");
+  TPStreamsSDK.initialize(orgCode: "6eafqn");
 
   runApp(const MyApp());
 }
@@ -34,8 +34,8 @@ class HomePage extends StatelessWidget {
       body: const Column(
         children: [
           TPStreamPlayer(
-              assetId: 'be922588-f33b-4fcb-953c-64bf048b8952',
-              accessToken: '159c06de-0e70-472c-a4e6-5a7edd25d264')
+              assetId: '68PAFnYTjSU',
+              accessToken: '5f3ded52-ace8-487e-809c-10de895872d6')
         ],
       ),
     );
