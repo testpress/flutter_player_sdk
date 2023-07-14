@@ -54,14 +54,6 @@ class _TPStreamPlayerState extends State<TPStreamPlayer> {
         });
   }
 
-  void pauseVideo() {
-    _controller.pause();
-  }
-
-  void seekTo(Duration position) {
-    _controller.seekTo(position);
-  }
-
   @override
   void dispose() {
     _controller.dispose();
