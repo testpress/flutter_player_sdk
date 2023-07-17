@@ -12,10 +12,7 @@ dependencies:
   flutter:
     sdk: flutter
   http: ^1.1.0
-  better_player:
-    git:
-      url: https://github.com/rounce/betterplayer.git
-      ref: fix/no_mime_in_dash
+  better_player: ^0.0.83
 
 dev_dependencies:
   flutter_test:
