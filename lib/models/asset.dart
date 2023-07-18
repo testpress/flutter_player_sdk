@@ -30,7 +30,7 @@ class Asset {
   }
 
   String get licenseURL {
-      var url = TPStreamsSDK.isUsedForStreams
+    var url = TPStreamsSDK.isUsedForStreams
       ? 'https://app.tpstreams.com/api/v1/${TPStreamsSDK.orgCode}/assets/$id/drm_license/?access_token=$accessToken'
       : 'https://${TPStreamsSDK.orgCode}.testpress.in/api/v2.5/drm_license_key/$id/?access_token=$accessToken';
 
@@ -73,7 +73,7 @@ class Video {
 
     return Video(
         playbackURL: drmEnabled ? json['hls_url'] : json['url'],
-        dashURL: json['dash_url'],
+        dashURL: drmEnabled ? json['dash_url'] : "",
         status: json['transcoding_status'],
         drmEnabled: drmEnabled);
   }
