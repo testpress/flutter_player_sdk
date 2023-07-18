@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:better_player/better_player.dart';
-import 'package:tpstreams_player_sdk/services/streams.dart';
+import 'package:tpstreams_player_sdk/services/network.dart';
 import 'package:tpstreams_player_sdk/tpstreams_player_sdk.dart';
 
 import '../domain/asset.dart';

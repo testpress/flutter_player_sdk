@@ -15,16 +15,25 @@ class Asset {
       required this.accessToken});
 
   factory Asset.fromJSON(Map<String, dynamic> json, String accessToken) {
+    Video video;
+    if (TPStreamsSDK.provider == PROVIDER.tpstreams) {
+      video = Video.fromStreamsResponse(json['video']);
+    } else {
+      video = Video.fromTestpressResponse(json);
+    }
+
     return Asset(
         id: json['id'],
         title: json['title'],
-        video: Video.fromJSON(json['video']),
+        video: video,
         accessToken: accessToken);
   }
 
   String get licenseURL {
-    var url =
-        'https://app.tpstreams.com/api/v1/${TPStreamsSDK.orgCode}/assets/$id/drm_license/?access_token=$accessToken';
+    var url = TPStreamsSDK.provider == PROVIDER.tpstreams
+        ? 'https://app.tpstreams.com/api/v1/${TPStreamsSDK.orgCode}/assets/$id/drm_license/?access_token=$accessToken'
+        : 'https://${TPStreamsSDK.orgCode}.testpress.in/api/v2.5/drm_license_key/$id/?access_token=$accessToken';
+
     if (Platform.isIOS) {
       url += '&drm_type=fairplay';
     }
@@ -51,12 +60,22 @@ class Video {
       required this.dashURL,
       required this.drmEnabled});
 
-  factory Video.fromJSON(Map<String, dynamic> json) {
+  factory Video.fromStreamsResponse(Map<String, dynamic> json) {
     return Video(
         playbackURL: json['playback_url'],
         dashURL: json['dash_url'],
         status: json['status'],
         drmEnabled: json["enable_drm"]);
+  }
+
+  factory Video.fromTestpressResponse(Map<String, dynamic> json) {
+    bool drmEnabled = json["drm_enabled"];
+
+    return Video(
+        playbackURL: drmEnabled ? json['hls_url'] : json['url'],
+        dashURL: drmEnabled ? json['dash_url'] : "",
+        status: json['transcoding_status'],
+        drmEnabled: drmEnabled);
   }
 
   String getPlaybackURL() {
