@@ -15,7 +15,7 @@ Future<Asset> fetchAsset(String assetId, String accessToken) async {
 }
 
 String generateAssetURL(String assetId, String accessToken) {
-  if (TPStreamsSDK.isUsedForStreams) {
+  if (TPStreamsSDK.provider == PROVIDER.tpstreams) {
     return "https://app.tpstreams.com/api/v1/${TPStreamsSDK.orgCode}/assets/$assetId/?access_token=$accessToken";
   }
 

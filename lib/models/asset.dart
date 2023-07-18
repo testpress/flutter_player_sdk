@@ -16,7 +16,7 @@ class Asset {
 
   factory Asset.fromJSON(Map<String, dynamic> json, String accessToken) {
     Video video;
-    if (TPStreamsSDK.isUsedForStreams) {
+    if (TPStreamsSDK.provider == PROVIDER.tpstreams) {
       video = Video.fromStreamsResponse(json['video']);
     } else {
       video = Video.fromTestpressResponse(json);
@@ -30,9 +30,9 @@ class Asset {
   }
 
   String get licenseURL {
-    var url = TPStreamsSDK.isUsedForStreams
-      ? 'https://app.tpstreams.com/api/v1/${TPStreamsSDK.orgCode}/assets/$id/drm_license/?access_token=$accessToken'
-      : 'https://${TPStreamsSDK.orgCode}.testpress.in/api/v2.5/drm_license_key/$id/?access_token=$accessToken';
+    var url = TPStreamsSDK.provider == PROVIDER.tpstreams
+        ? 'https://app.tpstreams.com/api/v1/${TPStreamsSDK.orgCode}/assets/$id/drm_license/?access_token=$accessToken'
+        : 'https://${TPStreamsSDK.orgCode}.testpress.in/api/v2.5/drm_license_key/$id/?access_token=$accessToken';
 
     if (Platform.isIOS) {
       url += '&drm_type=fairplay';

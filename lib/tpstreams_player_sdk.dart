@@ -5,7 +5,7 @@ import 'dart:math';
 export 'widgets/player.dart';
 
 enum PROVIDER {
-  tpStreams,
+  tpstreams,
   testpress,
 }
 
@@ -14,7 +14,7 @@ class TPStreamsSDK {
   static PROVIDER? _provider;
 
   static void initialize(
-      {PROVIDER provider = PROVIDER.tpStreams, required String orgCode}) {
+      {PROVIDER provider = PROVIDER.tpstreams, required String orgCode}) {
     if (orgCode.isEmpty) {
       throw Exception("Given OrgCode is empty, please pass a valid orgCode");
     }
@@ -33,5 +33,5 @@ class TPStreamsSDK {
 
   static bool get isInitialized => _orgCode != null;
 
-  static bool get isUsedForStreams => _provider == PROVIDER.tpStreams;
+  static PROVIDER? get provider => _provider;
 }
