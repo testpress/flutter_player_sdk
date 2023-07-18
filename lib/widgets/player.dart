@@ -49,7 +49,9 @@ class _TPStreamPlayerState extends State<TPStreamPlayer> {
           } else if (snapshot.hasError) {
             return Text(snapshot.error.toString());
           } else {
-            return const Text("Loading");
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
           }
         });
   }

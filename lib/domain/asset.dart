@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:better_player/better_player.dart';
+import 'package:flutter/material.dart';
 
 import '../models/asset.dart';
 
@@ -16,6 +17,7 @@ BetterPlayerConfiguration getPlayerConfiguration() {
     controlsConfiguration: BetterPlayerControlsConfiguration(
       enablePlayPause: true,
       enableFullscreen: true,
+      loadingColor: Colors.blue,
     ),
   );
 }
