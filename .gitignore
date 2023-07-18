@@ -32,3 +32,4 @@ build/
 
 .flutter-plugins
 .flutter-plugins-dependencies
+Example/pubspec.lock
