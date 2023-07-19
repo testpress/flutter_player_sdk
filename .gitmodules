@@ -1,0 +1,3 @@
+[submodule "betterplayer"]
+	path = betterplayer
+	url = git@github.com:harinath01/betterplayer.git
