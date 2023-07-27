@@ -56,7 +56,7 @@ class _TPStreamPlayerState extends State<TPStreamPlayer> {
 
   @override
   void dispose() {
-    _controller.dispose();
+    _controller.dispose(forceDispose=true);
     super.dispose();
   }
 }
