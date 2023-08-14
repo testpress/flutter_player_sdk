@@ -4,11 +4,6 @@ import 'package:better_player/better_player.dart';
 
 import '../models/asset.dart';
 
-BetterPlayerController getPlayerControllerForAsset(Asset asset) {
-  return BetterPlayerController(getPlayerConfiguration(),
-      betterPlayerDataSource: getDataSource(asset));
-}
-
 BetterPlayerConfiguration getPlayerConfiguration() {
   return const BetterPlayerConfiguration(
     autoPlay: true,
