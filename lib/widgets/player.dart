@@ -28,6 +28,7 @@ class _TPStreamPlayerState extends State<TPStreamPlayer> {
   void initState() {
     super.initState();
     _assetFuture = fetchAsset(widget.assetId, widget.accessToken);
+    _controller = BetterPlayerController(getPlayerConfiguration());
   }
 
   @override
@@ -41,7 +42,9 @@ class _TPStreamPlayerState extends State<TPStreamPlayer> {
         future: _assetFuture,
         builder: (context, snapshot) {
           if (snapshot.hasData) {
-            _controller = getPlayerControllerForAsset(snapshot.data as Asset);
+            _controller.setupDataSource(
+                getDataSource(snapshot.data as Asset)
+            );
             return AspectRatio(
               aspectRatio: 16 / 9,
               child: BetterPlayer(controller: _controller),
