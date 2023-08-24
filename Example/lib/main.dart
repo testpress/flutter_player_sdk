@@ -36,7 +36,7 @@ class HomePage extends StatelessWidget {
           Container(
             height: 240,
             color: Colors.black,
-            child: const Center(
+            child: Center(
                 child: TPStreamPlayer(
                     assetId: '68PAFnYTjSU',
                     accessToken: '5f3ded52-ace8-487e-809c-10de895872d6')),

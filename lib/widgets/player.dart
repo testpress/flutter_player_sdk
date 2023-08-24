@@ -10,11 +10,15 @@ class TPStreamPlayer extends StatefulWidget {
   final String assetId;
   final String accessToken;
 
-  const TPStreamPlayer({
+  TPStreamPlayer({
     Key? key,
     required this.assetId,
     required this.accessToken,
-  }) : super(key: key);
+  }) : super(key: key) {
+    if (assetId.isEmpty || accessToken.isEmpty) {
+      throw ArgumentError("Asset ID and Access token cannot be empty strings");
+    }
+  }
 
   @override
   State<TPStreamPlayer> createState() => _TPStreamPlayerState();
